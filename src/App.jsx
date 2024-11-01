@@ -19,16 +19,15 @@ function App() {
       fetch('https://api.github.com/users/SudhirYadav5678/repos').then(
         response => response.json()
       ).then(repo => {
-        //console.log(repo);
         setRepo(repo)
       })
 
-      fetch(`https://api.github.com/repos/SudhirYadav5678/${repoContent}/contents/`).then(
-        response => response.json()
-      ).then(repoContents => {
-        console.log(repoContents);
-        setRepoContents(repoContents)
-      })
+      fetch(`https://api.github.com/repos/SudhirYadav5678/${repoContent}/contents`)
+        .then(response => response.json())
+        .then(repoContents => {
+          console.log(repoContents);
+          setRepoContents(repoContents)
+        })
 
     }, [])
   } catch (error) {
@@ -80,13 +79,13 @@ function App() {
           <div>
             <h1 className='text-3xl mb-3 mt-5'>Project Overview</h1>
             <div>
-              <div>{repoContent}</div>
+              <div className='ml-5 '>{repoContent}</div>
               <div>
-                {/* {
+                {
                   repoContents.map((c, i) => (
-                    <div key={i} className='bg-black text-white'>{c.name}</div>
+                    <div key={i}><div className='w-[400px] h-[400px]'>{c.links.readMe.md}</div></div>
                   ))
-                } */}
+                }
               </div>
             </div>
           </div>
